@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+}
+
+.container{
+    margin: auto;
+
+    width: 1000px;
+    height: 500px;
+    background-color: lightgrey;
+}
+
+.result h1{
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-align: center;
+    padding-top: 50px;
+}

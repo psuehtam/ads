@@ -1,0 +1,12 @@
+Janeiro;32.1
+Fevereiro;29.4
+Marco;27
+Abril;24.2
+Maio;19.3
+Junho;13.2
+Julho;11.8
+Agosto;15.4
+Setembro;20.1
+Outubro;23.5
+Novembro;27.8
+Dezembro;31

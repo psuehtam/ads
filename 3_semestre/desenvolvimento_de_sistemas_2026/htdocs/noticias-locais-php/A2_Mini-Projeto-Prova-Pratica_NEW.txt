@@ -1,0 +1,305 @@
+                    Mini Projeto A2: Prova Prática
+                                        Valor 2,0
+
+
+                          Prof. Dr. José Jairo de S. e Silva
+
+                                          2026/1
+
+      Formato: atividade individual, em dupla ou em trio, prática, em PHP.
+            Entrega: 11/05/2026 via Blackboard (link do GitHub + vídeo).
+Objetivo: integrar variáveis, condicionais, loops, arrays, funções, $_GET, $_POST, validação,
+                                include/require e sessão.
+
+   Atenção
+   Vale 2,0 pontos na A2. Pode ser feito individualmente, em dupla ou em trio,
+   sem banco de dados e sem framework.
+
+
+Contexto
+Você ou sua equipe foi contratado para desenvolver um pequeno catálogo online dinâmico
+em PHP. Qualquer visitante pode ver e filtrar os itens cadastrados (filmes, livros, produtos,
+receitas, etc.); usuários autenticados acessam uma área restrita com funcionalidades extras.
+
+
+O que sua equipe precisa desenvolver
+  1. index.php: listagem dos itens (array + foreach) com imagem, título, categoria e
+     botão “Ver mais” levando aos detalhes via GET.
+  2. detalhes.php: exibe as informações completas do item recebido por GET.
+  3. filtrar.php: formulário GET filtrando por categoria ou tipo.
+  4. login.php: formulário POST com credenciais fixas armazenadas via password_hash()
+     e validadas com password_verify(); ao logar, inicia sessão.
+  5. protegido.php: área acessível só com sessão ativa; sem login, redireciona para
+     login.php.
+  6. Cadastro na área protegida: formulário POST que adiciona um novo item à sessão
+     e o exibe imediatamente em index.php.
+
+
+
+
+                                             1
+Desenvolvimento de Sistemas                                                   Mini Projeto A2
+
+
+   Atenção
+   Valide entradas com isset(), empty(), is_numeric() ou filter_var() e proteja a
+   saída com htmlspecialchars().
+
+
+
+Estrutura sugerida
+Mínimo de 5 arquivos PHP distintos. Sugestão: arquivo de dados (array), arquivo de
+funções auxiliares e include para cabeçalho/rodapé comuns.
+mini-projeto/
+  ��� dados.php
+  ��� funcoes.php
+  ��� cabecalho.php
+  ��� rodape.php
+  ��� index.php
+  ��� detalhes.php
+  ��� filtrar.php
+  ��� login.php
+  ��� protegido.php
+
+   Dica
+   Bônus (opcional): usar Bootstrap para deixar o site responsivo.
+
+
+
+Temas para o projeto
+1. Catálogo de filmes                          8. Portal de notícias locais
+2. Galeria de livros                           9. Cadastro de jogos favoritos
+3. Listagem de receitas
+                                           10. Lista de destinos turísticos
+4. Vitrine de produtos artesanais
+                                           11. Catálogo de séries
+5. Agenda de eventos culturais
+6. Lista de cursos online                  12. Cardápio de restaurante
+
+7. Repositório de tutoriais e dicas        13. Loja de roupas
+
+
+
+
+                                           2
+Desenvolvimento de Sistemas                                             Mini Projeto A2
+
+
+Exemplos visuais
+As telas a seguir usam um catálogo de filmes como referência, mas a mesma lógica vale
+para os demais temas. Os exemplos seguem o fluxo do usuário, da listagem pública até a
+área restrita.
+
+1. Página inicial (listagem do catálogo)
+foreach no array de itens, exibindo cada um em um card com imagem, título e botão “Ver
+mais”.
+
+
+
+
+                   Figura 1: Página inicial com os itens do catálogo.
+
+
+
+
+                                           3
+Desenvolvimento de Sistemas                                           Mini Projeto A2
+
+
+2. Página de login
+Formulário POST com usuário e senha. A senha fica em hash (password_hash()) e a verifi-
+cação usa password_verify().
+
+
+
+
+                              Figura 2: Página de login.
+
+
+
+
+                                          4
+Desenvolvimento de Sistemas                                               Mini Projeto A2
+
+
+3. Página de detalhes
+O id do item é enviado via GET para detalhes.php, que localiza o item e exibe suas infor-
+mações completas.
+
+
+
+
+                  Figura 3: Detalhes do item após clicar em ”Ver mais”.
+
+
+
+
+                                           5
+Desenvolvimento de Sistemas                                               Mini Projeto A2
+
+
+4. Área protegida e cadastro de novos itens
+Após o login, o usuário cadastra novos itens, que ficam na sessão e aparecem imediatamente
+na listagem principal.
+
+
+
+
+                   Figura 4: Cadastro de novos itens na área protegida.
+
+
+
+
+                                            6
+Desenvolvimento de Sistemas                                               Mini Projeto A2
+
+
+
+
+                Figura 5: Item recém-cadastrado já aparece no catálogo.
+
+
+
+
+                                          7
+Desenvolvimento de Sistemas                                                Mini Projeto A2
+
+
+5. Filtro / busca
+Formulário GET que permite buscar por gênero, tipo ou categoria; só os itens correspondentes
+são exibidos.
+
+
+
+
+                     Figura 6: Busca por gênero, nome, categoria etc.
+
+
+
+
+                                             8
+Desenvolvimento de Sistemas                                                Mini Projeto A2
+
+
+
+
+                  Figura 7: Catálogo antes e depois de aplicar o filtro.
+
+
+
+
+                                            9
+Desenvolvimento de Sistemas                                              Mini Projeto A2
+
+
+6. Página bloqueada (redirecionamento para login)
+Sem sessão ativa, a página protegida redireciona para login.php antes de exibir qualquer
+conteúdo restrito.
+
+
+
+
+                  Figura 8: Acesso bloqueado redireciona para o login.
+
+
+
+
+                                          10
+Desenvolvimento de Sistemas                                                Mini Projeto A2
+
+
+Apresentação em vídeo (visão de produto + técnico)
+A entrega inclui um vídeo entre 15 e 25 minutos em que a equipe defende o trabalho como
+se estivesse apresentando uma proposta comercial para um cliente. Pense no projeto
+como um sistema sob demanda que vocês foram contratados para desenvolver.
+
+  Atenção
+   Cada integrante deve aparecer falando no vídeo. Vídeos com duração fora da
+   faixa de 15 a 25 minutos perdem nota.
+
+
+Divisão sugerida do tempo
+• 1. Abertura (1–2 min): nome do pro-           gida e cadastro.
+  duto, equipe e o problema que ele resolve
+  em uma frase.                               • 4.    Detalhes técnicos (4–6 min):
+                                                estrutura de arquivos, decisões de
+• 2. Visão de produto (4–6 min): cli-
+                                                código,    segurança     (password_hash,
+  ente fictício, modelo de cobrança, precifi-
+                                                htmlspecialchars) e um trecho que a
+  cação fundamentada em pesquisa, custos
+                                                equipe considerou desafiador.
+  e diferencial.
+• 3.    Demonstração funcional (4–6 • 5. Encerramento (1–2 min): contribu-
+  min): sistema rodando do início ao fim:        ição de cada integrante, principais dificul-
+  catálogo, filtro, detalhes, login, área prote- dades e o que fariam diferente.
+
+
+Visão de produto: como precificar
+Tratem o projeto como desenvolvimento sob encomenda para um cliente fictício (uma
+empresa, um restaurante, um produtor de eventos). A precificação deve vir de pesquisa,
+não de chute. Apresentem no vídeo:
+  1. Cliente fictício e problema que o sistema resolve.
+  2. Estimativa de esforço em horas, quebrada por etapa do projeto. Exemplo:
+                   Etapa                              Horas estimadas
+                   Levantamento + protótipo                        6h
+                   Estrutura + páginas públicas                   12 h
+                   Login + sessão + área protegida                 8h
+                   Cadastro + filtro                               6h
+                   Testes + ajustes                                4h
+                   Deploy + documentação                           4h
+                   Total estimado                               ∼40 h
+  3. Valor-hora justificado com pesquisa, usando a fórmula:
+                                                Salário CLT × 1,8
+                                 Valor-hora ≈
+                                                    160 h/mês
+
+                                            11
+Desenvolvimento de Sistemas                                             Mini Projeto A2
+
+
+  4. Proposta comercial completa, contendo:
+         • Valor fechado de desenvolvimento (horas × valor-hora + margem)
+         • Custos de hospedagem e domínio (somar valores reais pesquisados)
+         • Mensalidade opcional de manutenção (suporte, atualizações)
+  5. Comparação com o mercado: mostrar 1 ou 2 propostas/anúncios similares no
+     Workana ou 99Freelas para validar a faixa de preço.
+
+  Dica
+  Onde pesquisar (tudo gratuito):
+  • Glassdoor, Vagas.com, Catho: salário médio de “desenvolvedor PHP junior”.
+  • Workana, 99Freelas: valores reais de projetos PHP freelance no Brasil.
+  • Sebrae: guias gratuitos de formação de preço para serviços.
+  • SBC, SindPD: tabelas de honorários sugeridos para profissionais de TI.
+  • Hostgator, Locaweb, DigitalOcean: preços reais de hospedagem.
+  Citem pelo menos uma fonte consultada durante essa parte do vídeo.
+
+  Atenção
+
+  A precificação deve ser justificada (de onde veio o valor-hora? quantas horas? por
+  quê?). Apresentar apenas um número final, sem mostrar a conta nem a pesquisa, perde
+  nota.
+
+
+Como entregar
+Entrega até 11/05/2026 pelo Blackboard.
+  • Repositório no GitHub com todos os arquivos .php do projeto.
+  • Ponto de entrada claro em index.php (com menu/links para as demais páginas).
+  • Vídeo de 15 a 25 minutos seguindo a estrutura da seção Apresentação em vídeo
+    (link do YouTube não listado, Google Drive ou anexado ao repositório).
+  • Enviar no Blackboard o link do repositório e o link do vídeo.
+  • Nenhum commit após 11/05/2026, mesmo que o Blackboard ainda aceite envios.
+
+
+Observações finais
+  • Projeto que não abre por index.php, com erro fatal ou navegação quebrada perde nota.
+  • Campos exibidos sem htmlspecialchars() perdem nota.
+  • Páginas protegidas acessíveis sem sessão ativa perdem nota.
+  • Vídeo fora da faixa de 15 a 25 minutos, sem aparição de todos os integrantes ou sem a
+    parte de visão de produto perde nota.
+  • Precificação sem pesquisa ou sem justificativa perde nota.
+  • Em caso de dúvida de interpretação, prefira a solução mais simples, funcional e orga-
+    nizada.
+
+                                           12
+

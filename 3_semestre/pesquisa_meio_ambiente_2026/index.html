@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronograma — Projeto Bebedouros</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1a2e;
+    --blue: #1a4b8c;
+    --cyan: #00b4d8;
+    --ice: #90e0ef;
+    --white: #f0f8ff;
+    --amber: #f4a261;
+    --green: #52b788;
+    --red: #e63946;
+    --card-bg: rgba(255,255,255,0.05);
+    --card-border: rgba(0,180,216,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,180,216,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(26,75,140,0.15) 0%, transparent 60%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(0,180,216,0.03) 60px,
+        rgba(0,180,216,0.03) 61px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .slide {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(0,180,216,0.05));
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .header h1 span {
+    color: var(--cyan);
+  }
+
+  .header p {
+    margin-top: 10px;
+    color: rgba(240,248,255,0.5);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* Timeline wrapper */
+  .timeline-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Horizontal rail */
+  .rail {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 0;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  /* Each step block */
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .step:nth-child(1) { animation-delay: 0.15s; }
+  .step:nth-child(2) { animation-delay: 0.3s; }
+  .step:nth-child(3) { animation-delay: 0.45s; }
+  .step:nth-child(4) { animation-delay: 0.6s; }
+
+  /* Connector line above */
+  .connector {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .connector-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), rgba(0,180,216,0.3));
+  }
+
+  .connector-line.right {
+    background: linear-gradient(90deg, rgba(0,180,216,0.3), var(--cyan));
+  }
+
+  .connector-line.fade {
+    opacity: 0.2;
+  }
+
+  /* Node dot */
+  .node {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2.5px solid var(--cyan);
+    background: var(--navy);
+    box-shadow: 0 0 12px rgba(0,180,216,0.5);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s;
+  }
+
+  .step:hover .node {
+    transform: scale(1.4);
+    box-shadow: 0 0 20px rgba(0,180,216,0.8);
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 20px 16px 18px;
+    margin-top: 16px;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 16px 16px 0 0;
+    background: var(--accent);
+  }
+
+  .step:hover .card {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    border-color: var(--accent);
+  }
+
+  .step[data-color="cyan"]   { --accent: var(--cyan); }
+  .step[data-color="green"]  { --accent: var(--green); }
+  .step[data-color="amber"]  { --accent: var(--amber); }
+  .step[data-color="red"]    { --accent: var(--red); }
+
+  /* Time badge on card */
+  .time-range {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .time-range .duration-pill {
+    background: rgba(255,255,255,0.08);
+    border-radius: 100px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(240,248,255,0.6);
+    letter-spacing: 0.03em;
+  }
+
+  .icon {
+    font-size: 26px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .card-desc {
+    font-size: 12.5px;
+    color: rgba(240,248,255,0.55);
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  /* Step number */
+  .step-number {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(0,180,216,0.5);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Separators between steps */
+  .arrow-sep {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 52px;
+    flex-shrink: 0;
+    color: rgba(0,180,216,0.35);
+    font-size: 18px;
+    width: 20px;
+    justify-content: center;
+  }
+
+  /* Footer note */
+  .footer-note {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    animation: fadeUp 0.7s 0.9s ease both;
+  }
+
+  .total-badge {
+    background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(0,180,216,0.05));
+    border: 1px solid rgba(0,180,216,0.4);
+    border-radius: 100px;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .total-badge .label {
+    font-size: 11px;
+    color: rgba(240,248,255,0.45);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .total-badge .value {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--cyan);
+    letter-spacing: -0.01em;
+  }
+
+  .warning-note {
+    background: rgba(244,162,97,0.1);
+    border: 1px solid rgba(244,162,97,0.35);
+    border-radius: 12px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(240,248,255,0.6);
+  }
+
+  .warning-note .warn-icon {
+    font-size: 16px;
+  }
+
+  .warning-note strong {
+    color: var(--amber);
+  }
+
+  /* Team line */
+  .team-line {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 11px;
+    color: rgba(240,248,255,0.2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: fadeUp 0.7s 1.1s ease both;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .rail {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .arrow-sep { display: none; }
+    .connector { flex-direction: column; height: auto; }
+    .connector-line { width: 2px; height: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">💧 DESPERDÍCIO DE ÁGUA
+ — Colégio Estadual Lindaura</div>
+    <h1>Linha do Tempo <span>das Ações</span></h1>
+    <p>Cronograma de execução &nbsp;·&nbsp; 09h55 → 10h40 &nbsp;·&nbsp; Equipe 5 — Universidade Positivo</p>
+  </div>
+
+  <!-- Timeline Rail -->
+  <div class="timeline-wrap">
+    <div class="rail">
+
+      <!-- AÇÃO 1 -->
+      <div class="step" data-color="cyan">
+        <div class="connector">
+          <div class="connector-line fade"></div>
+          <div class="node"></div>
+          <div class="connector-line"></div>
+        </div>
+        <div class="card">
+          <div class="time-range">
+            09h55 → 10h00
+            <span class="duration-pill">5 min</span>
+          </div>
+          <span class="icon">📌</span>
+          <div class="card-title">Fixar Cartazes de Impacto</div>
+          <div class="card-desc">Afixar materiais visuais estratégicos perto dos bebedouros para atrair atenção e criar curiosidade antes da apresentação.</div>
+        </div>
+      </div>
+
+      <div class="arrow-sep">→</div>
+
+      <!-- AÇÃO 2 -->
+      <div class="step" data-color="green">
+        <div class="connector">
+          <div class="connector-line"></div>
+          <div class="node"></div>
+          <div class="connector-line"></div>
+        </div>
+        <div class="card">
+          <div class="time-range">
+            10h00 → 10h25
+            <span class="duration-pill">25 min</span>
+          </div>
+          <span class="icon">🎞️</span>
+          <div class="card-title">Apresentação Interativa em Sala</div>
+          <div class="card-desc">Slides dinâmicos com dados, fotos e perguntas para engajar a turma sobre o desperdício e a qualidade da água na escola.</div>
+        </div>
+      </div>
+
+      <div class="arrow-sep">→</div>
+
+      <!-- AÇÃO 3 -->
+      <div class="step" data-color="amber">
+        <div class="connector">
+          <div class="connector-line"></div>
+          <div class="node"></div>
+          <div class="connector-line"></div>
+        </div>
+        <div class="card">
+          <div class="time-range">
+            10h25 → 10h35
+            <span class="duration-pill">10 min</span>
+          </div>
+          <span class="icon">📚</span>
+          <div class="card-title">Distribuição de Cartilhas</div>
+          <div class="card-desc">Entrega de cartilhas informativas e interativas para os alunos consultarem durante o intervalo e levarem para casa.</div>
+        </div>
+      </div>
+
+      <div class="arrow-sep">→</div>
+
+      <!-- AÇÃO 4 -->
+      <div class="step" data-color="red">
+        <div class="connector">
+          <div class="connector-line"></div>
+          <div class="node"></div>
+          <div class="connector-line fade"></div>
+        </div>
+        <div class="card">
+          <div class="time-range">
+            10h35 → 10h40
+            <span class="duration-pill">5 min</span>
+          </div>
+          <span class="icon">📄</span>
+          <div class="card-title">Entrega da Carta à Diretora</div>
+          <div class="card-desc">Entrega formal do ofício solicitando manutenção urgente dos bebedouros — troca de filtros e limpeza das cubas com base legal.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <div class="total-badge">
+      <span class="label">Início</span>
+      <span class="value">09h55</span>
+    </div>
+
+
+
+    <div class="total-badge">
+      <span class="label">Fim</span>
+      <span class="value">10h40</span>
+    </div>
+  </div>
+
+  <div class="team-line">Equipe 5 · Pesquisa Aplicada ao Meio Ambiente · Universidade Positivo</div>
+
+</div>
+
+</body>
+</html>

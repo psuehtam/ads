@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato | Matheus</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <span><a href="me.html">Sobre Mim</a></span>
+      <span><a href="hobbies.html">Hobbies</a></span>
+      <span><a href="contato.html">Contato</a></span>
+    </nav>
+    <div class="container">
+      <section id="contact">
+        <h2>Contato</h2>
+        <div class="contact-text">
+          <p>Você pode entrar em contato comigo:</p>
+        </div>
+        <form id="formulario" action="./contato_processado.html">
+          <fieldset>
+            <label>Nome</label>
+            <input type="text" name="nome" required />
+          </fieldset>
+          <fieldset>
+            <label>Email</label>
+            <input type="email" name="email" required />
+          </fieldset>
+          <fieldset>
+            <label>Telefone</label>
+            <input
+              type="tel"
+              id="telefone"
+              name="telefone"
+              placeholder="(XX) XXXXX-XXXX"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label>Assunto</label>
+            <textarea type="text" name="Assunto" rows="5" required></textarea>
+          </fieldset>
+          <fieldset>
+            <div class="text-right">
+              <input
+                type="checkbox"
+                value="1"
+                class="aceite"
+                name="aceite"
+                required
+              />
+              <p>Li e aceito a política de privacidade &nbsp;</p>
+            </div>
+          </fieldset>
+          <fieldset>
+            <button>
+              <p>Enviar</p>
+            </button>
+          </fieldset>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

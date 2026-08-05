@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Matheus</title>
+    <link rel="icon" href="../img/code-solid-full.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="iten_nav" href="#">Início</a>
+            <a class="logo_nav" href="about_me.html"><i class="fa-solid fa-code"></i></a>
+            <a class="iten_nav" href="contact.html">Contato</a>
+        </nav>
+    </header>
+    <section class="container1">
+        <div class="contact_text">
+            <h1>Entre em contato comigo!</h1>
+            <h2>Você pode entrar em contato comigo:</h2>
+        </div>
+    </section>
+
+    <section class="container2">
+        <form id="formulario" action="./contato_processado.html">
+            <fieldset>
+                <label>Nome</label>
+                <input type="text" name="nome" required />
+            </fieldset>
+            <fieldset>
+                <label>Email</label>
+                <input type="email" name="email" required />
+            </fieldset>
+            <fieldset>
+                <label>Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required />
+            </fieldset>
+            <fieldset>
+                <label>Assunto</label>
+                <textarea type="text" name="Assunto" rows="5" required></textarea>
+            </fieldset>
+            <fieldset>
+                <div class="text-right">
+                    <input type="checkbox" value="1" class="aceite" name="aceite" required />
+                    <p>Li e aceito a política de privacidade &nbsp;</p>
+                </div>
+            </fieldset>
+            <fieldset>
+                <button>
+                    <p>Enviar</p>
+                </button>
+            </fieldset>
+        </form>
+    </section>
+</body>
+
+</html>

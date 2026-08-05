@@ -1,0 +1,122 @@
+@host = http://localhost:5175
+
+### Listar todos os usuários
+GET {{host}}/usuarios
+Accept: application/json
+
+###
+
+### Buscar usuário por ID
+GET {{host}}/usuarios/1
+Accept: application/json
+
+###
+
+### Cadastrar usuário
+POST {{host}}/usuarios
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "idade": 25,
+  "telefone": "11987654321"
+}
+
+###
+
+### Atualizar usuário
+PUT {{host}}/usuarios/1
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "idade": 26,
+  "telefone": "11987654321"
+}
+
+###
+
+### Remover usuário
+DELETE {{host}}/usuarios/1
+
+###
+
+### Listar todos os livros
+GET {{host}}/livros
+Accept: application/json
+
+###
+
+### Buscar livro por ID
+GET {{host}}/livros/1
+Accept: application/json
+
+###
+
+### Cadastrar livro
+POST {{host}}/livros
+Content-Type: application/json
+
+{
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "anoPublicacao": 1899
+}
+
+###
+
+### Atualizar livro
+PUT {{host}}/livros/1
+Content-Type: application/json
+
+{
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "anoPublicacao": 1899
+}
+
+###
+
+### Remover livro
+DELETE {{host}}/livros/1
+
+###
+
+### Listar todos os empréstimos
+GET {{host}}/emprestimos
+Accept: application/json
+
+###
+
+### Buscar empréstimo por ID
+GET {{host}}/emprestimos/1
+Accept: application/json
+
+###
+
+### Realizar empréstimo (livroId=1, usuarioId=1, 7 dias)
+POST {{host}}/emprestimos
+Content-Type: application/json
+
+{
+  "livroId": 1,
+  "usuarioId": 1,
+  "quantidadeDias": 7
+}
+
+###
+
+### Atualizar prazo do empréstimo
+PUT {{host}}/emprestimos/1
+Content-Type: application/json
+
+{
+  "quantidadeDias": 14
+}
+
+###
+
+### Devolver livro (encerra empréstimo)
+DELETE {{host}}/emprestimos/1
+
+###

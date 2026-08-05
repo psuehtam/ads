@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Numero</title>
+</head>
+<body>
+    <div id= "container">
+        <div class="tittle"> <h1>Numero</h1></div>
+        <div class="input-text">
+                <input type="number" id="number-input" name="number-input" required>
+                <input onclick="digitNumber()" type="submit" value="Enviar">
+
+            <p id="antecessor"></p>
+            <p id="digitado"> </p>
+            <p id="sucessor"></p>
+        </div>
+
+        <div class="notas">
+            <fieldset id="situacao">
+                <legend>Boletim</legend>
+                <div class="tittle-fieldset">
+                    <h1>Calcula a Situação do aluno baseado na nota.</h1>
+                </div>
+                <div class="input-nota">
+                <input type="number" id="nota1" name="nota1" placeholder=" 1ª Nota">
+                <input type="number" id="nota2" name="nota2" placeholder=" 2ª Nota">
+                <input type="number" id="nota3" name="nota3" placeholder=" 3ª Nota">
+                <button onclick="mediaNotas()">Enviar</button>
+                <p id="media"></p>
+                <p id="status"></p>
+                </div>     
+            </fieldset>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Gabriel;13246544;gabriel@gmail.com
+Matheus;41997489580;matheuspupiaa@gmail.com
+Pedro;4197845123658;pedro@gmai.com
+Adalberto;41987489580;adalberto@gmail.com

@@ -1,0 +1,49 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Java e Kotlin
+*.class
+build/
+target/
+
+# Visual Studio Code
+.vscode/
+
+# Dependências
+node_modules/
+vendor/
+
+# Arquivos sensíveis
+.env
+.env.*
+
+# Sistema e temporários
+*.log
+.DS_Store
+Thumbs.db
+
+# Arquivos compilados em C/C++
+*.exe
+*.o
+*.obj
+*.out
+*.layout
+Makefile.win
+
+# Compilados e caches do .NET
+bin/
+obj/
+.vs/
+*.lscache
+
+# Bancos de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos compactados duplicados
+*.zip
+*.rar
+*.7z

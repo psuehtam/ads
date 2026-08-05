@@ -1,0 +1,405 @@
+@import url('https://fonts.cdnfonts.com/css/eurostile');
+
+/*LAYOUT PAGINA*/
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+    font-family: 'Eurostile', sans-serif;
+    overflow-y: auto;
+    /* ou auto */
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* opcional */
+}
+
+/*MENU*/
+nav {
+    position: fixed;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12rem;
+    background: white;
+    top: 0;
+    z-index: 100
+}
+
+nav a {
+    position: relative;
+    font-size: 1.25rem;
+    /* Destacado, mas não exagerado */
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    background: none;
+    transition: color 0.4s;
+}
+
+/* Logo central do menu */
+.logo_nav {
+    flex: 0 1 auto;
+    transition: all 0.7s;
+}
+
+/* Efeito de aumentar a logo ao passar o mouse */
+.logo_nav:hover {
+    transform: scale(2);
+}
+
+/* Links do menu (Início, Contato) */
+.iten_nav {
+    flex: 0 1 auto;
+}
+
+/* Linha animada embaixo dos links ao passar o mouse */
+.iten_nav:after {
+    content: "";
+    font-size: 1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.2rem;
+    width: 0;
+    height: 2px;
+    background: rgb(110, 7, 243);
+    transition: width 0.7s;
+    margin: 0 2rem 0 0;
+}
+
+.iten_nav:hover::after {
+    width: 100%;
+    margin: 0 2rem 0 0;
+}
+
+/*CONTEÚDO PRINCIPAL*/
+
+.container1 {
+    padding-top: 4rem;
+    width: 100%;
+}
+
+.container1 h1 {
+    text-align: center;
+    padding: 0.625rem;
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.container1 h2 {
+    margin: auto;
+    padding: 0.625rem;
+    text-align: center;
+    font-size: 1.5rem;
+    /* Subtítulo */
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/*SOBRE MIM*/
+/* Imagem de perfil */
+.about-me-img {
+    display: flex;
+    border-radius: 50%;
+    height: 15rem;
+    width: 15rem;
+    object-fit: cover;
+    margin: auto;
+    padding: 0.3125rem;
+}
+
+/* Container da seção sobre mim */
+.container2 {
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+/* Textos da seção sobre mim */
+.about-me-texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1.7;
+}
+
+.about-me-texts h1 {
+    text-align: center;
+    max-width: 800px;
+    padding: 0.625rem;
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+.about-me-texts h2 {
+    text-align: center;
+    max-width: 800px;
+    padding: 0.625rem;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+/*HOBBIES */
+.container3 {
+    background: linear-gradient(to bottom,
+            #6e07f3 0%,
+            #4a029c 40%,
+            #1e033b 80%,
+            #0a0118 95%,
+            #000000 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+}
+
+.wave-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.hobbies_text {
+    display: flex;
+    justify-content: center;
+}
+
+.hobbies_text h1 {
+    margin: 0;
+    padding: 2rem;
+    font-size: 2.5rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    text-shadow: 0 0 15px rgba(110, 7, 243, 0.7);
+    transition: all 0.7s;
+    letter-spacing: 5px;
+    cursor: pointer;
+}
+
+.hobbies_text h1:hover {
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    transition: all 0.7s;
+    letter-spacing: 20px;
+    text-shadow: 0 0 15px rgba(110, 7, 243, 0.7);
+}
+
+.hobbies-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    padding: 1.5rem 0;
+    width: auto;
+    max-width: auto;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.hobbie-card {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(36, 36, 36, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    height: 280px;
+    width: 240px;
+    border-radius: 20px;
+    transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    padding: 20px;
+    border: 1px solid rgba(110, 7, 243, 0.3);
+}
+
+.hobbie-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #6e07f3;
+    transition: all 0.4s;
+}
+
+.hobbie-card p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    z-index: 2;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: all 0.4s;
+}
+
+.hobbie-detail {
+    opacity: 0;
+    position: absolute;
+    bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #d5c6ff;
+    transition: all 0.4s;
+    transform: translateY(20px);
+    text-align: center;
+    width: 80%;
+    z-index: 2;
+}
+
+/* Efeitos hover */
+.hobbie-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(110, 7, 243, 0.25),
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(110, 7, 243, 0.2);
+}
+
+.hobbie-card:hover .hobbie-icon {
+    transform: scale(1.4) translateY(-10px);
+    color: #9f5fff;
+}
+
+.hobbie-card:hover p {
+    color: #a97fff;
+    font-size: 1.25rem;
+    transform: translateY(-10px);
+}
+
+.hobbie-card:hover .hobbie-detail {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efeito de brilho na borda */
+.hobbie-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(110, 7, 243, 0.7), transparent, #9f5fff);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hobbie-card:hover::after {
+    opacity: 1;
+}
+
+
+/*CONTATO*/
+
+.container2 form {
+    background: rgba(245, 245, 255, 0.95);
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.container2 form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.container2 form label {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.container2 form input[type="text"],
+.container2 form input[type="email"],
+.container2 form input[type="tel"],
+.container2 form textarea {
+    font-size: 1.1rem;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background: #f7f7ff;
+    outline: none;
+    transition: border 0.3s;
+    
+}
+
+
+.container2 form textarea {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+    resize: none;
+}
+
+.container2 form .text-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.container2 form .aceite {
+    accent-color: #6e07f3;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.container2 form button {
+    background: linear-gradient(90deg, #6e07f3);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.7s;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container2 form button:hover {
+    background: linear-gradient(90deg, #4a029c);
+    transform: translateY(-2px) scale(1.03);
+}
+
+.container2 form button p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+

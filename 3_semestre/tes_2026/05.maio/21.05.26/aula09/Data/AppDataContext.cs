@@ -1,0 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using aula09.Models;
+namespace aula09.Data
+{
+    public class AppDataContext : DbContext
+    {
+        public AppDataContext(DbContextOptions<AppDataContext>
+        options)
+        : base(options)
+        {
+        }
+        public DbSet<Produto> Produtos { get; set; }
+    }
+}
